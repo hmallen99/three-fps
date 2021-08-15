@@ -1,9 +1,10 @@
 .App {
   text-align: center;
+  height: 100%;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 0vmin;
   pointer-events: none;
 }
 
@@ -15,7 +16,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 0vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,6 +29,10 @@
   color: #61dafb;
 }
 
+:canvas-container {
+  height: 100%,
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -36,3 +41,4 @@
     transform: rotate(360deg);
   }
 }
+
