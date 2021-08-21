@@ -15,10 +15,10 @@ function App() {
         gl={{ alpha: false }}
         camera={{ fov: 85 }}>
         <Sky sunPosition={[100, 20, 100]} />
-        <ambientLight intensity={0.3} />
+        <ambientLight intensity={0.8} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
         <pointLight position={[-10, -10, -10]} />
-        <Physics gravity={[0, -30, 0]} defaultContactMaterial={{contactEquationStiffness: 1e2}}>
+        <Physics gravity={[0, -30, 0]} defaultContactMaterial={{contactEquationStiffness: 1e10}}>
           <Ground />
           <Player />
           

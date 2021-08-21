@@ -1,9 +1,10 @@
 import * as THREE from "three"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { useSphere } from "@react-three/cannon"
 import { useThree, useFrame } from "@react-three/fiber"
 import useMovementControls from "./useMovementControls"
 import Gun from "../Items/Gun"
+import useInventoryControls from "./useInventoryControls"
 
 const SPEED = 5
 const direction = new THREE.Vector3()
@@ -13,12 +14,20 @@ const rotation = new THREE.Vector3()
 const speed = new THREE.Vector3()
 
 export const Player = (props) => {
-  const gun = useRef()
   const [ref, api] = useSphere(() => ({ mass: 1, type: "Dynamic", position: [0, 10, 0], ...props }))
   const { camera } = useThree()
   const velocity = useRef([0, 0, 0])
-  useEffect(() => api.velocity.subscribe((v) => (velocity.current = v)), [])
+  useEffect(() => api.velocity.subscribe((v) => (velocity.current = v)))
   const { forward, backward, left, right, jump } = useMovementControls(velocity)
+
+
+  const { slotRef, slotItem } = useInventoryControls([
+    <Gun position={[0.3, -0.35, 0.5]} color="red" />,
+    <Gun position={[0.3, -0.35, 0.5]} color="green" />,
+    <Gun position={[0.3, -0.35, 0.5]} color="blue" />,
+    <Gun position={[0.3, -0.35, 0.5]} color="yellow" />,
+  ]);
+
   useFrame((state) => {
     ref.current.getWorldPosition(camera.position)
 
@@ -31,19 +40,19 @@ export const Player = (props) => {
     if (jump.jump) api.velocity.set(velocity.current[0], 10, velocity.current[2])
 
     // Handle Inventory Item
-    gun.current.children[0].rotation.x = THREE.MathUtils.lerp(
-      gun.current.children[0].rotation.x,
+    slotRef.current.children[0].rotation.x = THREE.MathUtils.lerp(
+      slotRef.current.children[0].rotation.x,
       Math.sin((speed.length() > 1) * state.clock.elapsedTime * 10) / 6,
       0.1,
     )
-    gun.current.rotation.copy(camera.rotation)
-    gun.current.position.copy(camera.position).add(camera.getWorldDirection(rotation).multiplyScalar(1))
+    slotRef.current.rotation.copy(camera.rotation)
+    slotRef.current.position.copy(camera.position).add(camera.getWorldDirection(rotation).multiplyScalar(1))
   })
   return (
     <>
       <mesh ref={ref} />
-      <group ref={gun} onPointerMissed={(e) => (gun.current.children[0].rotation.x = -0.5)}>
-        <Gun position={[0.3, -0.35, 0.5]} />
+      <group ref={slotRef} onPointerMissed={(e) => (slotRef.current.children[0].rotation.x = -0.5)}>
+        {slotItem}
       </group>
     </>
   )

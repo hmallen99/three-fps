@@ -17,9 +17,7 @@ const useMovementControls = (velocity) => {
   })
   useEffect(() => {
     const handleKeyPress = (e) => setMovement((m) => {
-      console.log(e.code)
       if (moveFieldByKey(e.code) === "jump") {
-        console.log(m.jump.jumpCount)
         if (m.jump.jumpHeld) {
           return {
             ...m,
@@ -64,7 +62,6 @@ const useMovementControls = (velocity) => {
     })
 
     const handleKeyUp = (e) => setMovement((m) => {
-      console.log("Key Up: ", e.code)
       if (moveFieldByKey(e.code) !== "jump") {
         return { ...m, [moveFieldByKey(e.code)]: false }
       }
@@ -84,7 +81,7 @@ const useMovementControls = (velocity) => {
       document.removeEventListener("keyup", handleKeyUp)
       document.removeEventListener("keypress", handleKeyPress)
     }
-  }, [])
+  })
   return movement
 }
 
