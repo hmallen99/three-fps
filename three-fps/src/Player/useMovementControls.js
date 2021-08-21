@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 const keys = { KeyW: "forward", KeyS: "backward", KeyA: "left", KeyD: "right", Space: "jump" }
 const moveFieldByKey = (key) => keys[key]
 
-const usePlayerControls = (velocity) => {
+const useMovementControls = (velocity) => {
   const [movement, setMovement] = useState({
     forward: false, 
     backward: false, 
@@ -17,7 +17,8 @@ const usePlayerControls = (velocity) => {
   })
   useEffect(() => {
     const handleKeyPress = (e) => setMovement((m) => {
-      if (moveFieldByKey(e.code) == "jump") {
+      console.log(e.code)
+      if (moveFieldByKey(e.code) === "jump") {
         console.log(m.jump.jumpCount)
         if (m.jump.jumpHeld) {
           return {
@@ -25,13 +26,13 @@ const usePlayerControls = (velocity) => {
             jump: { jump: false, jumpCount: m.jump.jumpCount, jumpHeld: true }
           }
         }
-        else if (Math.abs(velocity.current[1]) > 0.05 && m.jump.jumpCount < 2) {
+        else if (Math.abs(velocity.current[1]) > 0.5 && m.jump.jumpCount < 2) {
           return {
             ...m,
             jump: { jump: true, jumpCount: m.jump.jumpCount + 1, jumpHeld: true }
           }
         }
-        else if (Math.abs(velocity.current[1]) > 0.05 && m.jump.jumpCount >= 2) {
+        else if (Math.abs(velocity.current[1]) > 0.5 && m.jump.jumpCount >= 2) {
           return {
             ...m,
             jump: { jump: false, jumpCount: m.jump.jumpCount + 1, jumpHeld: true}
@@ -47,13 +48,14 @@ const usePlayerControls = (velocity) => {
       else {
         return {
           ...m,
+          jump: { jump: false, jumpCount: m.jump.jumpCount, jumpHeld: true }
         }
       }
     })
 
     const handleKeyDown = (e) => setMovement((m) => {
       
-      if (moveFieldByKey(e.code) != "jump") {
+      if (moveFieldByKey(e.code) !== "jump") {
         return { ...m, [moveFieldByKey(e.code)]: true }
       }
       else {
@@ -62,7 +64,8 @@ const usePlayerControls = (velocity) => {
     })
 
     const handleKeyUp = (e) => setMovement((m) => {
-      if (moveFieldByKey(e.code) != "jump") {
+      console.log("Key Up: ", e.code)
+      if (moveFieldByKey(e.code) !== "jump") {
         return { ...m, [moveFieldByKey(e.code)]: false }
       }
       else {
@@ -85,4 +88,4 @@ const usePlayerControls = (velocity) => {
   return movement
 }
 
-export default usePlayerControls;
+export default useMovementControls;
