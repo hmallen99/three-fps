@@ -1,7 +1,7 @@
 import { useThree } from "@react-three/fiber"
 import { useEffect, useState } from "react"
 import { Raycaster } from "three"
-import { getItem } from "../UUID"
+import { getAPI } from "../storeAPI"
 
 const raycaster = new Raycaster()
 
@@ -16,8 +16,8 @@ export const useSingleDamage = (damage) => {
   
       for(let i = 0; i < intersects.length; i++) {
         if (intersects[i].object.userData.id) {
-          const item = getItem(intersects[i].object.userData.id)
-          item.doDamage(damage)
+          const api = getAPI(intersects[i].object.userData.id)
+          api.doDamage(damage)
         }
       }
     }

@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { useLoader } from "@react-three/fiber"
 import { useBox } from "@react-three/cannon"
 import dirt from "../assets/dirt.jpg"
-import { addItem, getItem } from "../UUID"
+import { addAPI } from "../storeAPI"
 
 const CubeMesh = (props) => {
   const [ref] = useBox(() => ({ type: "Static", userData: {id: props.id}, ...props }))
@@ -25,7 +25,7 @@ export class Cube extends React.Component {
       health: 100,
     }
 
-    this.id = addItem({
+    this.id = addAPI({
       doDamage: (damage) => {
         this.setState((state) => {
           return {

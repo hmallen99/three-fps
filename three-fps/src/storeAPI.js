@@ -1,11 +1,11 @@
 let currentId = 0
 let itemList = []
 
-export const addItem = (item) => {
+export const addAPI = (item) => {
   itemList.push(item)
   return currentId++;
 }
 
-export const getItem = (id) => {
+export const getAPI = (id) => {
   return itemList[id];
 }

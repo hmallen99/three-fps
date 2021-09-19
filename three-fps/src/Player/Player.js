@@ -1,5 +1,5 @@
 import React from "react"
-import { getItem, addItem } from "../UUID"
+import { addAPI } from "../storeAPI"
 import { PlayerController } from "./PlayerController"
 
 export class Player extends React.Component {
@@ -10,7 +10,7 @@ export class Player extends React.Component {
       health: 100,
     }
 
-    this.id = addItem({
+    this.id = addAPI({
       doDamage: (damage) => {
         this.setState((state) => {
           return {
