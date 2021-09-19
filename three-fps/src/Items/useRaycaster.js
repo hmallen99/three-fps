@@ -5,11 +5,9 @@ import { getAPI } from "../storeAPI"
 
 const raycaster = new Raycaster()
 
-export const useGun = (damage, startingAmmo) => {
+export const useGun = (damage, slot, ammo, parentID) => {
   const camera = useThree((state) => state.camera)
   const scene = useThree((state) => state.scene)
-
-  const [ammo, setAmmo] = useState(startingAmmo)
 
   useEffect(() => {
     const handleMouseDown = (e) => {
@@ -23,7 +21,7 @@ export const useGun = (damage, startingAmmo) => {
             api.doDamage(damage)
           }
         }
-        setAmmo(ammo - 1)
+        getAPI(parentID).setAmmo(slot, ammo - 1)
       }
     }
 

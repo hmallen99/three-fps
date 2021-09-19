@@ -6,7 +6,7 @@ import { Text } from "@react-three/drei"
 export default function Model(props) {
   const group = useRef()
 
-  const ammo = useGun(50, 30)
+  useGun(props.config.damage, props.slot, props.ammo, props.parentID)
   return (
     <group ref={group} dispose={null} {...props}>
       <group rotation={[0, Math.PI / 1.8, -0.3]} scale={0.5}>
@@ -31,7 +31,7 @@ export default function Model(props) {
           anchorX="center"
           anchorY="middle"
         >
-          {ammo}
+          {props.ammo}
         </Text>
     </group>
   )

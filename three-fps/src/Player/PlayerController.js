@@ -20,21 +20,7 @@ export const PlayerController = (props) => {
   useEffect(() => api.velocity.subscribe((v) => (velocity.current = v)))
   const { forward, backward, left, right, jump } = useMovementControls(velocity)
 
-
-  const { slotRef, slotItem } = useInventoryControls([
-    <Item position={[0.3, -0.35, 0.5]} config={{
-      color: "green",
-    }} />,
-    <Item position={[0.3, -0.35, 0.5]} config={{
-      color: "red",
-    }} />,
-    <Item position={[0.3, -0.35, 0.5]} config={{
-      color: "orange",
-    }} />,
-    <Item position={[0.3, -0.35, 0.5]} config={{
-      color: "blue",
-    }} />,
-  ]);
+  const { slotRef, nextSlot } = useInventoryControls();
 
   useFrame((state) => {
     ref.current.getWorldPosition(camera.position)
@@ -60,7 +46,14 @@ export const PlayerController = (props) => {
     <>
       <mesh ref={ref} />
       <group ref={slotRef} onPointerMissed={(e) => (slotRef.current.children[0].rotation.x = -0.1)}>
-        {slotItem}
+        <Item 
+          position={[0.3, -0.35, 0.5]}
+          key={nextSlot} 
+          ammo={props.ammo[nextSlot]} 
+          config={props.configs[nextSlot]}
+          slot={nextSlot}
+          parentID={props.parentID}
+        />
       </group>
     </>
   )

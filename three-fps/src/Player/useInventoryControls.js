@@ -3,23 +3,18 @@ import { useEffect, useState, useRef } from "react"
 
 const keys = { Digit1: 0, Digit2: 1, Digit3: 2, Digit4: 3 }
 
-const useInventoryControls = (slotItems) => {
-  const slotRefs = [
-    useRef(),
-    useRef(),
-    useRef(),
-    useRef(),
-  ]
+const useInventoryControls = () => {
+  const slotRef = useRef()
 
-  const [slot, setSlot] = useState({ slotRef: slotRefs[0], slotItem: slotItems[0] })
+  const [slot, setSlot] = useState({ slotRef: slotRef, nextSlot: 0 })
 
   useEffect(() => {
     const handleKeyDown = (e) => setSlot(() => {
       if (e.code in keys) {
         const nextSlot = keys[e.code]
         return {
-          slotRef: slotRefs[nextSlot],
-          slotItem: slotItems[nextSlot],
+          slotRef: slotRef,
+          nextSlot: nextSlot,
         }
       } else {
         return {
