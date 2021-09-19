@@ -59,7 +59,7 @@ export const PlayerController = (props) => {
   return (
     <>
       <mesh ref={ref} />
-      <group ref={slotRef} onPointerMissed={(e) => (slotRef.current.children[0].rotation.x = -0.5)}>
+      <group ref={slotRef} onPointerMissed={(e) => (slotRef.current.children[0].rotation.x = -0.1)}>
         {slotItem}
       </group>
     </>
