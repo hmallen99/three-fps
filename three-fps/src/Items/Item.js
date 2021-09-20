@@ -1,4 +1,3 @@
-import { extend } from "@react-three/fiber"
 import React, { useRef } from "react"
 import { useGun } from "./useRaycaster"
 import { Text } from "@react-three/drei"

@@ -2,6 +2,7 @@ import React from "react"
 import { addAPI } from "../storeAPI"
 import { PlayerController } from "./PlayerController"
 
+
 export class Player extends React.Component {
   constructor(props) {
     super(props)
@@ -35,6 +36,7 @@ export class Player extends React.Component {
     return (
       <PlayerController 
         id={this.id} 
+        health={this.state.health}
         ammo={this.state.ammo}
         configs={[
           {
