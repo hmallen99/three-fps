@@ -1,5 +1,5 @@
 import * as THREE from "three"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef } from "react"
 import { useSphere } from "@react-three/cannon"
 import { useThree, useFrame } from "@react-three/fiber"
 import useMovementControls from "./useMovementControls"
@@ -15,7 +15,7 @@ const rotation = new THREE.Vector3()
 const speed = new THREE.Vector3()
 
 export const PlayerController = (props) => {
-  const [ref, api] = useSphere(() => ({ mass: 1, type: "Dynamic", position: [0, 10, 0], userData: {id: props.id}, ...props }))
+  const [ref, api] = useSphere(() => ({ mass: 1, type: "Dynamic", position: [0, 10, 0], userData: {id: props.objectID}, ...props }))
   const { camera } = useThree()
   const velocity = useRef([0, 0, 0])
   useEffect(() => api.velocity.subscribe((v) => (velocity.current = v)))

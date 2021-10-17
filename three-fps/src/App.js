@@ -1,9 +1,7 @@
 import './App.css';
 import { Canvas } from '@react-three/fiber'
 import { Sky, PointerLockControls } from '@react-three/drei'
-import { Player } from './Player/Player'
-import { Ground } from './Terrain/Ground'
-import { Cube } from './Terrain/Cube'
+import Game from './Game'
 import { Physics } from '@react-three/cannon'
 
 
@@ -20,10 +18,7 @@ function App() {
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
         <pointLight position={[-10, -10, -10]} />
         <Physics gravity={[0, -30, 0]} defaultContactMaterial={{contactEquationStiffness: 1e10}}>
-          <Ground />
-          <Player />
-          <Cube position={[0, 0.5, -10]} />
-          <Cube position={[10, 0.5, -10]} />
+          <Game />
         </Physics>
         <PointerLockControls />
       </Canvas>
