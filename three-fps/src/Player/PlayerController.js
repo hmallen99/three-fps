@@ -14,6 +14,18 @@ const sideVector = new THREE.Vector3()
 const rotation = new THREE.Vector3()
 const speed = new THREE.Vector3()
 
+// TODO: Rename to PlayerMesh
+
+/**
+ * The PlayerController handles a Player's movements and mesh. It uses React
+ * Hooks to handle keyboard inputs for moving, jumping, and switching items
+ * 
+ * adapted in part from Maksim Ivanov 
+ * "React Minecraft": https://www.youtube.com/watch?v=Lc2JvBXMesY&t=124s
+ * 
+ * @param {*} props 
+ * @returns Player GUI, Currently held inventory item
+ */
 export const PlayerController = (props) => {
   const [ref, api] = useSphere(() => ({ mass: 1, type: "Dynamic", position: [0, 10, 0], userData: {id: props.objectID}, ...props }))
   const { camera } = useThree()

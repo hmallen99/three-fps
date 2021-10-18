@@ -3,6 +3,13 @@ import { useEffect, useState, useRef } from "react"
 
 const keys = { Digit1: 0, Digit2: 1, Digit3: 2, Digit4: 3 }
 
+/**
+ * React hook that handles keyboard inputs for switching between inventory
+ * items.
+ * 
+ * @returns inventory slot that the playerhas switched to and a ref to the
+ * item in the slot
+ */
 const useInventoryControls = () => {
   const slotRef = useRef()
 

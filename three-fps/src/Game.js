@@ -4,7 +4,13 @@ import { Cube } from './Terrain/Cube'
 import { Provider } from 'react-redux'
 import store from './Reducers/objectStore'
 
-
+/**
+ * All of the objects in the game, including the terrain, destructibles,
+ * and Players
+ * 
+ * @returns All the objects in the Game, wrapped in a store provider
+ * that handles updates to the objects
+ */
 function Game() {
   return (
     <Provider store={store}>

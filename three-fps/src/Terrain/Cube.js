@@ -5,6 +5,14 @@ import { useBox } from "@react-three/cannon"
 import dirt from "../assets/dirt.jpg"
 import { useSelector } from "react-redux"
 
+/**
+ * Simple Cube Mesh that can take damage
+ * 
+ * adapted in part from Maksim Ivanov 
+ * "React Minecraft": https://www.youtube.com/watch?v=Lc2JvBXMesY&t=124s
+ * @param {*} props 
+ * @returns A Cube Mesh
+ */
 const CubeMesh = (props) => {
   const [ref] = useBox(() => ({ type: "Static", userData: {id: props.objectID}, ...props }))
   const texture = useLoader(THREE.TextureLoader, dirt)
