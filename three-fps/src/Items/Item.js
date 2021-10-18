@@ -2,9 +2,19 @@ import React, { useRef } from "react"
 import { useGun } from "./useRaycaster"
 import { Text } from "@react-three/drei"
 
+/**
+ * A simple Cube mesh that can do damage to objects
+ * 
+ * @param {*} props 
+ *   ammo: current ammo from Redux store
+ *   parentID: objectID of playerMesh containing the gun
+ *   config: contains Item metadata (color, total ammo) 
+ * @returns A simple weapon that fires and updates its ammo count
+ */
 export default function Model(props) {
   const group = useRef()
 
+  // Handles the weapon firing logic on mouse click
   useGun(props.config.damage, props.slot, props.ammo, props.parentID)
   return (
     <group ref={group} dispose={null} {...props}>

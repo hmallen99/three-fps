@@ -1,6 +1,14 @@
 import { useSelector } from "react-redux";
 import { PlayerController } from "./PlayerController";
 
+/**
+ * React component containing player metadata, such as health, loadout, and ammo.
+ * Uses Redux store as its source of truth for state
+ * 
+ * @param {*} props 
+ *   objectID: unique object ID for this player
+ * @returns A PlayerController, which handles the player's mesh and movements
+ */
 export function Player(props) {
   const health = useSelector((state) => state.objects[props.objectID].health)
   const ammo = useSelector((state) => state.objects[props.objectID].ammo)

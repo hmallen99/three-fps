@@ -6,6 +6,18 @@ import { objectActions } from "../Reducers/objectSlice"
 
 const raycaster = new Raycaster()
 
+/**
+ * This React hook handles weapon firing. On the user's click,
+ * it will decrement the ammo in this weapon, then send out a ray from
+ * the center of the screen, and try to damage the first object that it
+ * intersects with.
+ * 
+ * @param {*} damage Amount of damage that this weapon does
+ * @param {*} slot Which inventory slot this weapon is in
+ * @param {*} ammo Current amount of ammo in this inventory slot
+ * @param {*} parentID objectID of parent holding this item
+ * @returns
+ */
 export const useGun = (damage, slot, ammo, parentID) => {
   const camera = useThree((state) => state.camera)
   const scene = useThree((state) => state.scene)
@@ -36,6 +48,7 @@ export const useGun = (damage, slot, ammo, parentID) => {
         if (!doesIntersect) {
           return
         }
+
         dispatch(objectActions.decrementHealth({
           objectID: intersectID,
           damageAmount: damage
@@ -50,5 +63,6 @@ export const useGun = (damage, slot, ammo, parentID) => {
     }
   })
 
+  // TODO: remove return ammo
   return ammo
 }

@@ -5,7 +5,12 @@ import Game from './Game'
 import { Physics } from '@react-three/cannon'
 
 
-
+/**
+ * Main Three-js App Component
+ * adapted in part from Maksim Ivanov 
+ * "React Minecraft": https://www.youtube.com/watch?v=Lc2JvBXMesY&t=124s
+ * @returns A 3D FPS in React
+ */
 function App() {
   return (
     <div id="canvas-container" style={{"height" : "100%"}}>
