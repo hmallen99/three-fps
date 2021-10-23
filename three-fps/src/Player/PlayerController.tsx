@@ -1,5 +1,5 @@
 import * as THREE from "three"
-import React, { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { useSphere } from "@react-three/cannon"
 import { useThree, useFrame } from "@react-three/fiber"
 import useMovementControls from "./useMovementControls"

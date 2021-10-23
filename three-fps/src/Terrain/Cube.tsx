@@ -1,5 +1,4 @@
 import * as THREE from "three"
-import React from "react"
 import { useLoader } from "@react-three/fiber"
 import { useBox } from "@react-three/cannon"
 import dirt from "../assets/dirt.jpg"
