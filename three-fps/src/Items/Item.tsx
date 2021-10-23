@@ -11,7 +11,7 @@ import { Text } from "@react-three/drei"
  *   config: contains Item metadata (color, total ammo) 
  * @returns A simple weapon that fires and updates its ammo count
  */
-export default function Model(props) {
+export default function Model(props : any) {
   const group = useRef()
 
   // Handles the weapon firing logic on mouse click
@@ -26,7 +26,7 @@ export default function Model(props) {
         
       </group>
       <Text
-          rotation={[0, 0, 0, 0]}
+          rotation={[0, 0, 0]}
           position-z={-1}
           position-x={1.3}
           position-y={0.4}

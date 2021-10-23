@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { RootState } from "../Reducers/objectStore";
 import { PlayerController } from "./PlayerController";
 
 /**
@@ -9,9 +10,9 @@ import { PlayerController } from "./PlayerController";
  *   objectID: unique object ID for this player
  * @returns A PlayerController, which handles the player's mesh and movements
  */
-export function Player(props) {
-  const health = useSelector((state) => state.objects[props.objectID].health)
-  const ammo = useSelector((state) => state.objects[props.objectID].ammo)
+export function Player(props : any) {
+  const health = useSelector((state : RootState) => state.objects[props.objectID].health)
+  const ammo = useSelector((state : RootState) => state.objects[props.objectID].ammo)
 
   return (
     <PlayerController 

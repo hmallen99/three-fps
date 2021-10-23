@@ -1,5 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState : any = {
+  player1: {
+    health: 100,
+    ammo: [40, 30, 25, 3],
+  },
+  object2: {
+    health: 100,
+  },
+  object3: {
+    health: 100,
+  }
+}
+
 /**
  * Redux Slice that handles object updates, particularly
  * health and damage.
@@ -7,18 +20,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const objectSlice = createSlice({
   name: "objects",
   // TODO: Handle state initialization for more objects with addObjects
-  initialState: {
-    player1: {
-      health: 100,
-      ammo: [40, 30, 25, 3],
-    },
-    object2: {
-      health: 100,
-    },
-    object3: {
-      health: 100,
-    }
-  },
+  initialState,
   reducers: {
     // Add an object to the global store
     addObjects: (state, action) => {

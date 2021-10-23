@@ -18,13 +18,13 @@ const raycaster = new Raycaster()
  * @param {*} parentID objectID of parent holding this item
  * @returns
  */
-export const useGun = (damage, slot, ammo, parentID) => {
+export const useGun = (damage: number, slot: number, ammo: number, parentID: string) => {
   const camera = useThree((state) => state.camera)
   const scene = useThree((state) => state.scene)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const handleMouseDown = (e) => {
+    const handleMouseDown = () => {
       if (ammo > 0) {
         raycaster.setFromCamera({x: 0, y: 0}, camera)
         const intersects = raycaster.intersectObjects(scene.children)

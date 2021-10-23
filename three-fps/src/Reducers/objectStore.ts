@@ -5,10 +5,13 @@ import objectReducer from './objectSlice';
  * Object store. Holds object metadata like health and ammo.
  * Updated via the objectReducer
  */
-export default configureStore({
+const store = configureStore({
   reducer: {
     objects: objectReducer
   }
 })
 
+export default store
+
+export type RootState = ReturnType<typeof store.getState>
 

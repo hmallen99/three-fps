@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
-const keys = { KeyW: "forward", KeyS: "backward", KeyA: "left", KeyD: "right", Space: "jump" }
-const moveFieldByKey = (key) => keys[key]
+const keys : any = { KeyW: "forward", KeyS: "backward", KeyA: "left", KeyD: "right", Space: "jump" }
+const moveFieldByKey = (key : string) => keys[key]
 
 /**
  * A React Hook that handles keyboard inputs for moving the character.
@@ -15,7 +15,7 @@ const moveFieldByKey = (key) => keys[key]
  * of jumping when just returning to the ground
  * @returns a dictionary of movements, set to true if currently in action
  */
-const useMovementControls = (velocity) => {
+const useMovementControls = (velocity: React.MutableRefObject<number[]>) => {
   const [movement, setMovement] = useState({
     forward: false, 
     backward: false, 
@@ -28,7 +28,7 @@ const useMovementControls = (velocity) => {
     }
   })
   useEffect(() => {
-    const handleKeyPress = (e) => setMovement((m) => {
+    const handleKeyPress = (e : KeyboardEvent) => setMovement((m) => {
       if (moveFieldByKey(e.code) === "jump") {
         if (m.jump.jumpHeld) {
           return {
@@ -63,7 +63,7 @@ const useMovementControls = (velocity) => {
       }
     })
 
-    const handleKeyDown = (e) => setMovement((m) => {
+    const handleKeyDown = (e : KeyboardEvent) => setMovement((m) => {
       
       if (moveFieldByKey(e.code) !== "jump") {
         return { ...m, [moveFieldByKey(e.code)]: true }
@@ -73,7 +73,7 @@ const useMovementControls = (velocity) => {
       }
     })
 
-    const handleKeyUp = (e) => setMovement((m) => {
+    const handleKeyUp = (e : KeyboardEvent) => setMovement((m) => {
       if (moveFieldByKey(e.code) !== "jump") {
         return { ...m, [moveFieldByKey(e.code)]: false }
       }
