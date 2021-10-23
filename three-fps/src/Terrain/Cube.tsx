@@ -1,9 +1,9 @@
 import * as THREE from "three"
-import React from "react"
 import { useLoader } from "@react-three/fiber"
 import { useBox } from "@react-three/cannon"
 import dirt from "../assets/dirt.jpg"
 import { useSelector } from "react-redux"
+import { RootState } from "../Reducers/objectStore"
 
 /**
  * Simple Cube Mesh that can take damage
@@ -13,7 +13,7 @@ import { useSelector } from "react-redux"
  * @param {*} props 
  * @returns A Cube Mesh
  */
-const CubeMesh = (props) => {
+const CubeMesh = (props : any) => {
   const [ref] = useBox(() => ({ type: "Static", userData: {id: props.objectID}, ...props }))
   const texture = useLoader(THREE.TextureLoader, dirt)
   return (
@@ -26,8 +26,8 @@ const CubeMesh = (props) => {
   )
 }
 
-export function Cube(props) {
-  const health = useSelector((state) => state.objects[props.objectID].health)
+export function Cube(props : any) {
+  const health = useSelector((state : RootState) => state.objects[props.objectID].health)
 
   if (health > 0) {
     return (

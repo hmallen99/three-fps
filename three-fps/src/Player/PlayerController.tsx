@@ -1,5 +1,5 @@
 import * as THREE from "three"
-import React, { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { useSphere } from "@react-three/cannon"
 import { useThree, useFrame } from "@react-three/fiber"
 import useMovementControls from "./useMovementControls"
@@ -26,7 +26,7 @@ const speed = new THREE.Vector3()
  * @param {*} props 
  * @returns Player GUI, Currently held inventory item
  */
-export const PlayerController = (props) => {
+export const PlayerController = (props : any) => {
   const [ref, api] = useSphere(() => ({ mass: 1, type: "Dynamic", position: [0, 10, 0], userData: {id: props.objectID}, ...props }))
   const { camera } = useThree()
   const velocity = useRef([0, 0, 0])
@@ -36,7 +36,9 @@ export const PlayerController = (props) => {
   const { slotRef, nextSlot } = useInventoryControls();
 
   useFrame((state) => {
-    ref.current.getWorldPosition(camera.position)
+    if (ref.current) {
+      ref.current.getWorldPosition(camera.position)
+    }
 
     // Set Movement
     frontVector.set(0, 0, Number(backward) - Number(forward))
@@ -47,18 +49,22 @@ export const PlayerController = (props) => {
     if (jump.jump) api.velocity.set(velocity.current[0], 10, velocity.current[2])
 
     // Handle Inventory Item
-    slotRef.current.children[0].rotation.x = THREE.MathUtils.lerp(
-      slotRef.current.children[0].rotation.x,
-      Math.sin((speed.length() > 1) * state.clock.elapsedTime * 10) / 6,
-      0.1,
-    )
-    slotRef.current.rotation.copy(camera.rotation)
-    slotRef.current.position.copy(camera.position).add(camera.getWorldDirection(rotation).multiplyScalar(1))
+    if (slotRef.current) {
+      const modifier : number = speed.length() > 1 ? 1 : 0 
+
+      slotRef.current.children[0].rotation.x = THREE.MathUtils.lerp(
+        slotRef.current.children[0].rotation.x,
+        Math.sin(modifier * state.clock.elapsedTime * 10) / 6,
+        0.1,
+      )
+      slotRef.current.rotation.copy(camera.rotation)
+      slotRef.current.position.copy(camera.position).add(camera.getWorldDirection(rotation).multiplyScalar(1))
+    }
   })
   return (
     <>
       <mesh ref={ref} />
-      <group ref={slotRef} onPointerMissed={(e) => (slotRef.current.children[0].rotation.x = -0.1)}>
+      <group ref={slotRef} onPointerMissed={() => (slotRef.current.children[0].rotation.x = -0.1)}>
         <Item 
           position={[0.3, -0.35, 0.5]}
           key={nextSlot} 
@@ -68,7 +74,7 @@ export const PlayerController = (props) => {
           parentID={props.parentID}
         />
         <Text
-          rotation={[0, 0, 0, 0]}
+          rotation={[0, 0, 0]}
           position-z={0}
           position-x={-1.6}
           position-y={-0.7}

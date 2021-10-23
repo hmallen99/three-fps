@@ -4,14 +4,13 @@ import { Sky, PointerLockControls } from '@react-three/drei'
 import Game from './Game'
 import { Physics } from '@react-three/cannon'
 
-
 /**
  * Main Three-js App Component
  * adapted in part from Maksim Ivanov 
  * "React Minecraft": https://www.youtube.com/watch?v=Lc2JvBXMesY&t=124s
  * @returns A 3D FPS in React
  */
-function App() {
+function App(props: any) {
   return (
     <div id="canvas-container" style={{"height" : "100%"}}>
       <Canvas
@@ -25,7 +24,7 @@ function App() {
         <Physics gravity={[0, -30, 0]} defaultContactMaterial={{contactEquationStiffness: 1e10}}>
           <Game />
         </Physics>
-        <PointerLockControls />
+        <PointerLockControls {...props}/>
       </Canvas>
     </div>
   );

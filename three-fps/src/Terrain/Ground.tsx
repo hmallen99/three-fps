@@ -11,7 +11,7 @@ import grass from "../assets/grass.jpg"
  * @param {*} props 
  * @returns A Ground Mesh that handles collisions
  */
-export const Ground = (props) => {
+export const Ground = (props : any) => {
   const [ref] = usePlane(() => ({ rotation: [-Math.PI / 2, 0, 0], ...props }))
   const texture = useLoader(THREE.TextureLoader, grass)
   texture.wrapS = texture.wrapT = THREE.RepeatWrapping
