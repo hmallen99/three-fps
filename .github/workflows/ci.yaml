@@ -15,15 +15,12 @@ jobs:
           node-version: 12
       - run: git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf ssh://git@github.com/
       - run: node --version
-      - run: cd three-fps
-      - run: ls
-      - run: npm init
-      - run: npm ci
-      - run: npm test
-      - name: coverage
-        uses: codecov/codecov-action@v1
-        with:
-          name: actions 12
+      - run: |
+          cd three-fps
+          ls
+          npm ci
+          npm test
+
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -33,6 +30,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 12
-      - run: cd three-fps
-      - run: npm ci
-      - run: npm run lint
+      - run: |
+          cd three-fps
+          npm ci
+          npm run lint
