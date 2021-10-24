@@ -16,6 +16,8 @@ jobs:
       - run: git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf ssh://git@github.com/
       - run: node --version
       - run: cd three-fps
+      - run: ls
+      - run: npm init
       - run: npm ci
       - run: npm test
       - name: coverage
