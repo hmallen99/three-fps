@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../Reducers/objectStore";
-import { PlayerController } from "./PlayerController";
+import { useSelector } from "react-redux"
+import { RootState } from "../Reducers/objectStore"
+import { PlayerController } from "./PlayerController"
 
 /**
  * React component containing player metadata, such as health, loadout, and ammo.
@@ -11,34 +11,34 @@ import { PlayerController } from "./PlayerController";
  * @returns A PlayerController, which handles the player's mesh and movements
  */
 export function Player(props : any) {
-  const health = useSelector((state : RootState) => state.objects[props.objectID].health)
-  const ammo = useSelector((state : RootState) => state.objects[props.objectID].ammo)
+	const health = useSelector((state : RootState) => state.objects[props.objectID].health)
+	const ammo = useSelector((state : RootState) => state.objects[props.objectID].ammo)
 
-  return (
-    <PlayerController 
-      objectID={props.objectID} 
-      health={health}
-      ammo={ammo}
-      configs={[
-        {
-          damage: 20,
-          color: "green",
-        },
-        {
-          damage: 10,
-          color: "red",
-        },
-        {
-          damage: 40,
-          color: "yellow",
-        },
-        {
-          damage: 25,
-          color: "blue",
-        }
-      ]}
-      parentID={props.objectID}
-      {...props} 
-    />
-  )
+	return (
+		<PlayerController 
+			objectID={props.objectID} 
+			health={health}
+			ammo={ammo}
+			configs={[
+				{
+					damage: 20,
+					color: "green",
+				},
+				{
+					damage: 10,
+					color: "red",
+				},
+				{
+					damage: 40,
+					color: "yellow",
+				},
+				{
+					damage: 25,
+					color: "blue",
+				}
+			]}
+			parentID={props.objectID}
+			{...props} 
+		/>
+	)
 }

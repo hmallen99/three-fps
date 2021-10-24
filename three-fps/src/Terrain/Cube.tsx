@@ -14,25 +14,25 @@ import { RootState } from "../Reducers/objectStore"
  * @returns A Cube Mesh
  */
 const CubeMesh = (props : any) => {
-  const [ref] = useBox(() => ({ type: "Static", userData: {id: props.objectID}, ...props }))
-  const texture = useLoader(THREE.TextureLoader, dirt)
-  return (
-    <mesh ref={ref} receiveShadow castShadow >
-      {[...Array(6)].map((_, index) => (
-        <meshStandardMaterial attachArray="material" key={index} map={texture} color={"white"} />
-      ))}
-      <boxGeometry />
-    </mesh>
-  )
+	const [ref] = useBox(() => ({ type: "Static", userData: {id: props.objectID}, ...props }))
+	const texture = useLoader(THREE.TextureLoader, dirt)
+	return (
+		<mesh ref={ref} receiveShadow castShadow >
+			{[...Array(6)].map((_, index) => (
+				<meshStandardMaterial attachArray="material" key={index} map={texture} color={"white"} />
+			))}
+			<boxGeometry />
+		</mesh>
+	)
 }
 
 export function Cube(props : any) {
-  const health = useSelector((state : RootState) => state.objects[props.objectID].health)
+	const health = useSelector((state : RootState) => state.objects[props.objectID].health)
 
-  if (health > 0) {
-    return (
-      <CubeMesh id={props.objectID} {...props}/>
-    )
-  }
-  return null
+	if (health > 0) {
+		return (
+			<CubeMesh id={props.objectID} {...props}/>
+		)
+	}
+	return null
 }

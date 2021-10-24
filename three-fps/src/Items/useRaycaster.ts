@@ -19,50 +19,50 @@ const raycaster = new Raycaster()
  * @returns
  */
 export const useGun = (damage: number, slot: number, ammo: number, parentID: string) => {
-  const camera = useThree((state) => state.camera)
-  const scene = useThree((state) => state.scene)
-  const dispatch = useDispatch()
+	const camera = useThree((state) => state.camera)
+	const scene = useThree((state) => state.scene)
+	const dispatch = useDispatch()
 
-  useEffect(() => {
-    const handleMouseDown = () => {
-      if (ammo > 0) {
-        raycaster.setFromCamera({x: 0, y: 0}, camera)
-        const intersects = raycaster.intersectObjects(scene.children)
-        var doesIntersect = false
-        var intersectID = null
+	useEffect(() => {
+		const handleMouseDown = () => {
+			if (ammo > 0) {
+				raycaster.setFromCamera({x: 0, y: 0}, camera)
+				const intersects = raycaster.intersectObjects(scene.children)
+				let doesIntersect = false
+				let intersectID = null
 
-        dispatch(objectActions.decrementAmmo({
-          objectID: parentID,
-          ammo: 1,
-          slot: slot
-        }))
+				dispatch(objectActions.decrementAmmo({
+					objectID: parentID,
+					ammo: 1,
+					slot: slot
+				}))
 
-        for(let i = 0; i < intersects.length; i++) {
-          if (intersects[i].object.userData.id) {
-            doesIntersect = true
-            intersectID = intersects[i].object.userData.id
-            break;
-          }
-        }
+				for(let i = 0; i < intersects.length; i++) {
+					if (intersects[i].object.userData.id) {
+						doesIntersect = true
+						intersectID = intersects[i].object.userData.id
+						break
+					}
+				}
         
-        if (!doesIntersect) {
-          return
-        }
+				if (!doesIntersect) {
+					return
+				}
 
-        dispatch(objectActions.decrementHealth({
-          objectID: intersectID,
-          damageAmount: damage
-        }))
-      }
-    }
+				dispatch(objectActions.decrementHealth({
+					objectID: intersectID,
+					damageAmount: damage
+				}))
+			}
+		}
 
-    document.addEventListener("mousedown", handleMouseDown)
+		document.addEventListener("mousedown", handleMouseDown)
 
-    return () => {
-      document.removeEventListener("mousedown", handleMouseDown)
-    }
-  })
+		return () => {
+			document.removeEventListener("mousedown", handleMouseDown)
+		}
+	})
 
-  // TODO: remove return ammo
-  return ammo
+	// TODO: remove return ammo
+	return ammo
 }
