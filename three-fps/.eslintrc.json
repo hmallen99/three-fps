@@ -1,7 +1,10 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": {
+          "globals": true 
+        }
     },
     "extends": [
         "eslint:recommended",
@@ -18,6 +21,7 @@
     },
     "plugins": [
         "react",
+        "jest",
         "@typescript-eslint"
     ],
     "rules": {
@@ -36,6 +40,7 @@
         "semi": [
             "error",
             "never"
-        ]
+        ],
+        "react/react-in-jsx-scope": "off"
     }
 }
