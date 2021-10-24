@@ -4,20 +4,6 @@ on:
   pull_request:
 name: ci
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 12
-      - run: node --version
-      - run: |
-          cd three-fps
-          ls
-          npm ci
-          npm test
-
   lint:
     runs-on: ubuntu-latest
     steps:
