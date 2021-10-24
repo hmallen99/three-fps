@@ -64,7 +64,11 @@ export const PlayerController = (props : any) => {
 	return (
 		<>
 			<mesh ref={ref} />
-			<group ref={slotRef} onPointerMissed={() => (slotRef.current.children[0].rotation.x = -0.1)}>
+			<group ref={slotRef} onPointerMissed={() => {
+				if (slotRef.current) {
+					slotRef.current.children[0].rotation.x = -0.1
+				}
+			}}>
 				<Item 
 					position={[0.3, -0.35, 0.5]}
 					key={nextSlot} 
