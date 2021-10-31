@@ -1,16 +1,18 @@
-import "./App.css"
 import { Canvas } from "@react-three/fiber"
 import { Sky, PointerLockControls } from "@react-three/drei"
 import Game from "./Game"
 import { Physics } from "@react-three/cannon"
+import { ReactElement } from "react"
 
 /**
  * Main Three-js App Component
+ * Contains a canvas with the game lighting, controls, physics, and all objects
+ * 
  * adapted in part from Maksim Ivanov 
  * "React Minecraft": https://www.youtube.com/watch?v=Lc2JvBXMesY&t=124s
  * @returns A 3D FPS in React
  */
-function App(props: any) {
+function World(props: any) : ReactElement {
 	return (
 		<div id="canvas-container" style={{"height" : "100%"}}>
 			<Canvas
@@ -30,4 +32,4 @@ function App(props: any) {
 	)
 }
 
-export default App
+export default World

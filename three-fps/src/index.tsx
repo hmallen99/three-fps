@@ -1,10 +1,10 @@
 import ReactDOM from "react-dom"
 import "./index.css"
-import App from "./App"
+import World from "./World"
 import reportWebVitals from "./reportWebVitals"
 
 ReactDOM.render(
-	<App />,
+	<World />,
 	document.getElementById("root")
 )
 
