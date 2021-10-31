@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react"
+import React, { useEffect, useState, useRef, RefObject } from "react"
 
 
 const keys : any = { Digit1: 0, Digit2: 1, Digit3: 2, Digit4: 3 }
@@ -10,7 +10,7 @@ const keys : any = { Digit1: 0, Digit2: 1, Digit3: 2, Digit4: 3 }
  * @returns inventory slot that the playerhas switched to and a ref to the
  * item in the slot
  */
-const useInventoryControls = () => {
+const useInventoryControls = () : { slotRef: RefObject<any>, nextSlot: number } => {
 	const slotRef = useRef<any>()
 
 	const [slot, setSlot] = useState({ slotRef: slotRef, nextSlot: 0 })

@@ -3,6 +3,7 @@ import { Ground } from "./Terrain/Ground"
 import { Cube } from "./Terrain/Cube"
 import { Provider } from "react-redux"
 import store from "./Reducers/objectStore"
+import { ReactElement } from "react"
 
 /**
  * All of the objects in the game, including the terrain, destructibles,
@@ -11,7 +12,7 @@ import store from "./Reducers/objectStore"
  * @returns All the objects in the Game, wrapped in a store provider
  * that handles updates to the objects
  */
-function Game() {
+function GameContainer() : ReactElement {
 	return (
 		<Provider store={store}>
 			<Ground />
@@ -22,4 +23,4 @@ function Game() {
 	)
 }
 
-export default Game
+export default GameContainer

@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { ReactElement, useRef } from "react"
 import { useGun } from "./useRaycaster"
 import { Text } from "@react-three/drei"
 
@@ -11,7 +11,7 @@ import { Text } from "@react-three/drei"
  *   config: contains Item metadata (color, total ammo) 
  * @returns A simple weapon that fires and updates its ammo count
  */
-export default function Model(props : any) {
+export default function Model(props : any) : ReactElement {
 	const group = useRef()
 
 	// Handles the weapon firing logic on mouse click

@@ -18,7 +18,7 @@ const raycaster = new Raycaster()
  * @param {*} parentID objectID of parent holding this item
  * @returns
  */
-export const useGun = (damage: number, slot: number, ammo: number, parentID: string) => {
+export const useGun = (damage: number, slot: number, ammo: number, parentID: string) : void => {
 	const camera = useThree((state) => state.camera)
 	const scene = useThree((state) => state.scene)
 	const dispatch = useDispatch()
@@ -62,7 +62,4 @@ export const useGun = (damage: number, slot: number, ammo: number, parentID: str
 			document.removeEventListener("mousedown", handleMouseDown)
 		}
 	})
-
-	// TODO: remove return ammo
-	return ammo
 }

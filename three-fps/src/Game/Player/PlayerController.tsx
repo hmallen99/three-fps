@@ -1,5 +1,5 @@
 import * as THREE from "three"
-import { useEffect, useRef } from "react"
+import { ReactElement, useEffect, useRef } from "react"
 import { useSphere } from "@react-three/cannon"
 import { useThree, useFrame } from "@react-three/fiber"
 import useMovementControls from "./useMovementControls"
@@ -26,7 +26,7 @@ const speed = new THREE.Vector3()
  * @param {*} props 
  * @returns Player GUI, Currently held inventory item
  */
-export const PlayerController = (props : any) => {
+export const PlayerController = (props : any) : ReactElement => {
 	const [ref, api] = useSphere(() => ({ mass: 1, type: "Dynamic", position: [0, 10, 0], userData: {id: props.objectID}, ...props }))
 	const { camera } = useThree()
 	const velocity = useRef([0, 0, 0])
