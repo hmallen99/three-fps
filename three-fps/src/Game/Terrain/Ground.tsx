@@ -1,7 +1,7 @@
 import * as THREE from "three"
 import { useLoader } from "@react-three/fiber"
 import { usePlane } from "@react-three/cannon"
-import grass from "../assets/grass.jpg"
+import grass from "../Assets/grass.jpg"
 
 /**
  * Ground Mesh

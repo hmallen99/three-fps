@@ -1,7 +1,7 @@
 import "./World.css"
 import { Canvas } from "@react-three/fiber"
 import { Sky, PointerLockControls } from "@react-three/drei"
-import Game from "./Game"
+import GameContainer from "./GameContainer"
 import { Physics } from "@react-three/cannon"
 import { ReactElement } from "react"
 
@@ -25,7 +25,7 @@ function World(props: any) : ReactElement {
 				<spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
 				<pointLight position={[-10, -10, -10]} />
 				<Physics gravity={[0, -30, 0]} defaultContactMaterial={{contactEquationStiffness: 1e10}}>
-					<Game />
+					<GameContainer />
 				</Physics>
 				<PointerLockControls {...props}/>
 			</Canvas>

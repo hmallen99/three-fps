@@ -1,6 +1,6 @@
 import "./App.css"
-import World from "./World"
-import Home from "./Home"
+import World from "./Game/World"
+import Home from "./Webpage/Home"
 import {
 	BrowserRouter as Router,
 	Switch,

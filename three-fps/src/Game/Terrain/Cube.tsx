@@ -1,7 +1,7 @@
 import * as THREE from "three"
 import { useLoader } from "@react-three/fiber"
 import { useBox } from "@react-three/cannon"
-import dirt from "../assets/dirt.jpg"
+import dirt from "../Assets/dirt.jpg"
 import { useSelector } from "react-redux"
 import { RootState } from "../Reducers/objectStore"
 

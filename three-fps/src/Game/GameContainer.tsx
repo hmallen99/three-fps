@@ -12,7 +12,7 @@ import { ReactElement } from "react"
  * @returns All the objects in the Game, wrapped in a store provider
  * that handles updates to the objects
  */
-function Game() : ReactElement {
+function GameContainer() : ReactElement {
 	return (
 		<Provider store={store}>
 			<Ground />
@@ -23,4 +23,4 @@ function Game() : ReactElement {
 	)
 }
 
-export default Game
+export default GameContainer
