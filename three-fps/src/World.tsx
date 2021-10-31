@@ -1,3 +1,4 @@
+import "./World.css"
 import { Canvas } from "@react-three/fiber"
 import { Sky, PointerLockControls } from "@react-three/drei"
 import Game from "./Game"
