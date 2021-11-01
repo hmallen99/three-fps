@@ -6,6 +6,10 @@ import {
 	Switch,
 	Route
 } from "react-router-dom"
+import LoadoutPage from "./Webpage/LoadoutPage/LoadoutPage"
+import AvatarPage from "./Webpage/AvatarPage/AvatarPage"
+import ShopPage from "./Webpage/ShopPage/ShopPage"
+import SettingsPage from "./Webpage/SettingsPage/SettingsPage"
 
 
 export default function App() {
@@ -17,6 +21,18 @@ export default function App() {
 				</Route>
 				<Route path="/world">
 					<World />
+				</Route>
+				<Route path="/settings">
+					<SettingsPage />
+				</Route>
+				<Route path="/shop">
+					<ShopPage />
+				</Route>
+				<Route path="/avatar">
+					<AvatarPage />
+				</Route>
+				<Route path="/loadout">
+					<LoadoutPage />
 				</Route>
 			</Switch>
 		</Router>
