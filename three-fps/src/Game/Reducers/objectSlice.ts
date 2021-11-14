@@ -10,6 +10,9 @@ const initialState : any = {
 	},
 	object3: {
 		health: 100,
+	},
+	zombie1: {
+		health: 100,
 	}
 }
 
