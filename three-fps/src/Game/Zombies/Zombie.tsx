@@ -18,6 +18,7 @@ export function Zombie(props : any) : ReactElement | null {
 		parentID={props.objectID}
 		objectID={props.objectID} 
 		health={health}
+		damage={25}
 		{...props}
 	/>
 

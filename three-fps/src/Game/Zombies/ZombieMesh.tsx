@@ -2,13 +2,15 @@ import * as THREE from "three"
 import { ReactElement, useEffect, useRef } from "react"
 import { useSphere } from "@react-three/cannon"
 import { useFrame } from "@react-three/fiber"
-import { SphereGeometry } from "three"
+import { getPosition } from "../Reducers/playerPositionReducer"
+import { useDispatch } from "react-redux"
+import { objectActions } from "../Reducers/objectSlice"
 
-const SPEED = 5
 const direction = new THREE.Vector3()
-const frontVector = new THREE.Vector3()
-const sideVector = new THREE.Vector3()
 const speed = new THREE.Vector3()
+const playerPosition = new THREE.Vector3()
+const zombiePosition = new THREE.Vector3()
+const defaultMatrix = new THREE.Matrix4()
 
 // TODO: Rename to PlayerMesh
 
@@ -21,16 +23,29 @@ const speed = new THREE.Vector3()
  * @returns Zombie mesh
  */
 export const ZombieMesh = (props : any) : ReactElement => {
-	const [ref, api] = useSphere(() => ({ mass: 1, type: "Dynamic", position: [0, 10, 0], userData: {id: props.objectID}, ...props }))
+	const dispatch = useDispatch()
+	const onCollision = (e : any) => {
+		const intersectData = e.body.userData
+		if (intersectData.type === "Player"){
+			console.log(intersectData.id)
+			dispatch(objectActions.decrementHealth({
+				objectID: intersectData.id,
+				damageAmount: props.damage,
+			}))
+		}
+	}
+
+	const [ref, api] = useSphere(() => ({ mass: 1, type: "Dynamic", onCollideBegin: onCollision, userData: {id: props.objectID}, ...props }))
 	const velocity = useRef([0, 0, 0])
 	useEffect(() => api.velocity.subscribe((v) => (velocity.current = v)))
 
 	useFrame(() => {
 		// Set Movement
-		frontVector.set(0, 0, 0)
-		sideVector.set(0, 0, 0)
-		direction.subVectors(frontVector, sideVector).normalize().multiplyScalar(SPEED)
-		speed.fromArray(velocity.current)
+		const pos = getPosition("player1")
+		playerPosition.set(pos.x, pos.y, pos.z)
+		zombiePosition.setFromMatrixPosition(ref.current ? ref.current.matrixWorld : defaultMatrix)
+		direction.subVectors(playerPosition, zombiePosition).normalize().multiplyScalar(props.speed)
+		speed.fromArray(velocity.current) 
 		api.velocity.set(direction.x, velocity.current[1], direction.z)
 	})
 	return (

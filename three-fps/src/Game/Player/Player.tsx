@@ -11,35 +11,39 @@ import { PlayerController } from "./PlayerController"
  *   objectID: unique object ID for this player
  * @returns A PlayerController, which handles the player's mesh and movements
  */
-export function Player(props : any) : ReactElement {
+export function Player(props : any) : ReactElement | null {
 	const health = useSelector((state : RootState) => state.objects[props.objectID].health)
 	const ammo = useSelector((state : RootState) => state.objects[props.objectID].ammo)
+	console.log(health)
 
-	return (
-		<PlayerController 
-			objectID={props.objectID} 
-			health={health}
-			ammo={ammo}
-			configs={[
-				{
-					damage: 20,
-					color: "green",
-				},
-				{
-					damage: 10,
-					color: "red",
-				},
-				{
-					damage: 40,
-					color: "yellow",
-				},
-				{
-					damage: 25,
-					color: "blue",
-				}
-			]}
-			parentID={props.objectID}
-			{...props} 
-		/>
-	)
+	if (health > 0) {
+		return (
+			<PlayerController 
+				objectID={props.objectID} 
+				health={health}
+				ammo={ammo}
+				configs={[
+					{
+						damage: 20,
+						color: "green",
+					},
+					{
+						damage: 10,
+						color: "red",
+					},
+					{
+						damage: 40,
+						color: "yellow",
+					},
+					{
+						damage: 25,
+						color: "blue",
+					}
+				]}
+				parentID={props.objectID}
+				{...props} 
+			/>
+		)
+	}
+	return null
 }

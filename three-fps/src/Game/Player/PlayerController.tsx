@@ -6,6 +6,7 @@ import useMovementControls from "./useMovementControls"
 import useInventoryControls from "./useInventoryControls"
 import Item from "../Items/Item"
 import { Text } from "@react-three/drei"
+import { setPosition } from "../Reducers/playerPositionReducer"
 
 const SPEED = 5
 const direction = new THREE.Vector3()
@@ -13,6 +14,8 @@ const frontVector = new THREE.Vector3()
 const sideVector = new THREE.Vector3()
 const rotation = new THREE.Vector3()
 const speed = new THREE.Vector3()
+const pos = new THREE.Vector3()
+const defaultMatrix = new THREE.Matrix4()
 
 // TODO: Rename to PlayerMesh
 
@@ -27,7 +30,7 @@ const speed = new THREE.Vector3()
  * @returns Player GUI, Currently held inventory item
  */
 export const PlayerController = (props : any) : ReactElement => {
-	const [ref, api] = useSphere(() => ({ mass: 1, type: "Dynamic", position: [0, 10, 0], userData: {id: props.objectID}, ...props }))
+	const [ref, api] = useSphere(() => ({ mass: 1, type: "Dynamic", userData: {id: props.objectID, type: "Player"}, ...props }))
 	const { camera } = useThree()
 	const velocity = useRef([0, 0, 0])
 	useEffect(() => api.velocity.subscribe((v) => (velocity.current = v)))
@@ -39,6 +42,9 @@ export const PlayerController = (props : any) : ReactElement => {
 		if (ref.current) {
 			ref.current.getWorldPosition(camera.position)
 		}
+
+		pos.setFromMatrixPosition(ref.current ? ref.current.matrixWorld : defaultMatrix)
+		setPosition("player1", {x : pos.x, y : pos.y, z : pos.z})
 
 		// Set Movement
 		frontVector.set(0, 0, Number(backward) - Number(forward))
@@ -61,6 +67,7 @@ export const PlayerController = (props : any) : ReactElement => {
 			slotRef.current.position.copy(camera.position).add(camera.getWorldDirection(rotation).multiplyScalar(1))
 		}
 	})
+	
 	return (
 		<>
 			<mesh ref={ref} />
