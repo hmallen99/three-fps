@@ -22,11 +22,11 @@ const defaultMatrix = new THREE.Matrix4()
 /**
  * The PlayerController handles a Player's movements and mesh. It uses React
  * Hooks to handle keyboard inputs for moving, jumping, and switching items
- * 
- * adapted in part from Maksim Ivanov 
+ *
+ * adapted in part from Maksim Ivanov
  * "React Minecraft": https://www.youtube.com/watch?v=Lc2JvBXMesY&t=124s
- * 
- * @param {*} props 
+ *
+ * @param {*} props
  * @returns Player GUI, Currently held inventory item
  */
 export const PlayerController = (props : any) : ReactElement => {
@@ -56,7 +56,7 @@ export const PlayerController = (props : any) : ReactElement => {
 
 		// Handle Inventory Item
 		if (slotRef.current) {
-			const modifier : number = speed.length() > 1 ? 1 : 0 
+			const modifier : number = speed.length() > 1 ? 1 : 0
 
 			slotRef.current.children[0].rotation.x = THREE.MathUtils.lerp(
 				slotRef.current.children[0].rotation.x,
@@ -67,19 +67,19 @@ export const PlayerController = (props : any) : ReactElement => {
 			slotRef.current.position.copy(camera.position).add(camera.getWorldDirection(rotation).multiplyScalar(1))
 		}
 	})
-	
+
 	return (
 		<>
 			<mesh ref={ref} />
 			<group ref={slotRef} onPointerMissed={() => {
 				if (slotRef.current) {
-					slotRef.current.children[0].rotation.x = -0.1
+					slotRef.current.children[0].rotation.x = 0.1
 				}
 			}}>
-				<Item 
+				<Item
 					position={[0.3, -0.35, 0.5]}
-					key={nextSlot} 
-					ammo={props.ammo[nextSlot]} 
+					key={nextSlot}
+					ammo={props.ammo[nextSlot]}
 					config={props.configs[nextSlot]}
 					slot={nextSlot}
 					parentID={props.parentID}
