@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit"
-import objectReducer from "./objectSlice"
+import destructibleReducer from "./destructibleSlice"
 
 /**
  * Object store. Holds object metadata like health and ammo.
@@ -7,7 +7,7 @@ import objectReducer from "./objectSlice"
  */
 const store = configureStore({
 	reducer: {
-		objects: objectReducer
+		destructibles: destructibleReducer
 	}
 })
 

@@ -4,7 +4,7 @@ import { useSphere } from "@react-three/cannon"
 import { useFrame } from "@react-three/fiber"
 import { getPosition } from "../Reducers/playerPositionReducer"
 import { useDispatch } from "react-redux"
-import { objectActions } from "../Reducers/objectSlice"
+import { destructibleActions } from "../Reducers/destructibleSlice"
 
 const direction = new THREE.Vector3()
 const speed = new THREE.Vector3()
@@ -17,9 +17,9 @@ const defaultMatrix = new THREE.Matrix4()
 /**
  * The ZombieController handles a Zombie's movements and mesh. It uses React
  * Hooks to handle keyboard inputs for moving, jumping, and switching items
- * 
- * 
- * @param {*} props 
+ *
+ *
+ * @param {*} props
  * @returns Zombie mesh
  */
 export const ZombieMesh = (props : any) : ReactElement => {
@@ -28,7 +28,7 @@ export const ZombieMesh = (props : any) : ReactElement => {
 		const intersectData = e.body.userData
 		if (intersectData.type === "Player"){
 			console.log(intersectData.id)
-			dispatch(objectActions.decrementHealth({
+			dispatch(destructibleActions.decrementHealth({
 				objectID: intersectData.id,
 				damageAmount: props.damage,
 			}))
@@ -45,7 +45,7 @@ export const ZombieMesh = (props : any) : ReactElement => {
 		playerPosition.set(pos.x, pos.y, pos.z)
 		zombiePosition.setFromMatrixPosition(ref.current ? ref.current.matrixWorld : defaultMatrix)
 		direction.subVectors(playerPosition, zombiePosition).normalize().multiplyScalar(props.speed)
-		speed.fromArray(velocity.current) 
+		speed.fromArray(velocity.current)
 		api.velocity.set(direction.x, velocity.current[1], direction.z)
 	})
 	return (

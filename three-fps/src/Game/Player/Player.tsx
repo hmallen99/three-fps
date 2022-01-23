@@ -1,6 +1,6 @@
 import { ReactElement } from "react"
 import { useSelector } from "react-redux"
-import { RootState } from "../Reducers/objectStore"
+import { RootState } from "../Reducers/GameStore"
 import { PlayerController } from "./PlayerController"
 
 /**
@@ -12,8 +12,8 @@ import { PlayerController } from "./PlayerController"
  * @returns A PlayerController, which handles the player's mesh and movements
  */
 export function Player(props : any) : ReactElement | null {
-	const health = useSelector((state : RootState) => state.objects[props.objectID].health)
-	const ammo = useSelector((state : RootState) => state.objects[props.objectID].ammo)
+	const health = useSelector((state : RootState) => state.destructibles.destructibles[props.objectID].health)
+	const ammo = useSelector((state : RootState) => state.destructibles.destructibles[props.objectID].ammo)
 	console.log(health)
 
 	if (health > 0) {

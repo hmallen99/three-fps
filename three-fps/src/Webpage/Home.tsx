@@ -21,7 +21,7 @@ export default function Home() : ReactElement {
 							</Link>
 						</td>
 						<td>
-							<Link to="/world">
+							<Link to="/start">
 								<button className="button1 menu-button-primary">PLAY</button>
 							</Link>
 						</td>

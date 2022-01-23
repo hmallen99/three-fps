@@ -10,6 +10,9 @@ import LoadoutPage from "./Webpage/LoadoutPage/LoadoutPage"
 import AvatarPage from "./Webpage/AvatarPage/AvatarPage"
 import ShopPage from "./Webpage/ShopPage/ShopPage"
 import SettingsPage from "./Webpage/SettingsPage/SettingsPage"
+import StartPage from "./Webpage/StartPage/StartPage"
+import store from "./Game/Reducers/GameStore"
+import { Provider } from "react-redux"
 
 
 export default function App() {
@@ -33,6 +36,11 @@ export default function App() {
 				</Route>
 				<Route path="/loadout">
 					<LoadoutPage />
+				</Route>
+				<Route path="/start">
+					<Provider store={store} >
+						<StartPage />
+					</Provider>
 				</Route>
 			</Switch>
 		</Router>
