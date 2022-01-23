@@ -14,7 +14,7 @@ type GLTFResult = GLTF & {
 }
 
 /**
- * A simple Cube mesh that can do damage to objects
+ * A simple gltf mesh that can do damage to objects on left click
  *
  * @param {*} props
  *   ammo: current ammo from Redux store
