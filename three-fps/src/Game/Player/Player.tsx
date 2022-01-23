@@ -6,8 +6,8 @@ import { PlayerController } from "./PlayerController"
 /**
  * React component containing player metadata, such as health, loadout, and ammo.
  * Uses Redux store as its source of truth for state
- * 
- * @param {*} props 
+ *
+ * @param {*} props
  *   objectID: unique object ID for this player
  * @returns A PlayerController, which handles the player's mesh and movements
  */
@@ -18,30 +18,30 @@ export function Player(props : any) : ReactElement | null {
 
 	if (health > 0) {
 		return (
-			<PlayerController 
-				objectID={props.objectID} 
+			<PlayerController
+				objectID={props.objectID}
 				health={health}
 				ammo={ammo}
 				configs={[
 					{
 						damage: 20,
-						color: "green",
+						assetID: "./lasgun.gltf",
 					},
 					{
 						damage: 10,
-						color: "red",
+						assetID: "./lasgun2.gltf",
 					},
 					{
 						damage: 40,
-						color: "yellow",
+						assetID: "./lasgun3.gltf",
 					},
 					{
 						damage: 25,
-						color: "blue",
+						assetID: "./lasgun4.gltf",
 					}
 				]}
 				parentID={props.objectID}
-				{...props} 
+				{...props}
 			/>
 		)
 	}

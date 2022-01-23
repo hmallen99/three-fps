@@ -25,7 +25,7 @@ type GLTFResult = GLTF & {
 export default function Model(props : any) : ReactElement {
 	const group = useRef()
 
-	const { nodes, materials } = useGLTF("/lasgun.gltf", true) as GLTFResult
+	const { nodes, materials } = useGLTF(props.config.assetID, true) as GLTFResult
 
 	// Handles the weapon firing logic on mouse click
 	useGun(props.config.damage, props.slot, props.ammo, props.parentID)
