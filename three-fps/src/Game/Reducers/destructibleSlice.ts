@@ -11,31 +11,6 @@ const initialState : any = {
 			health: 100,
 			ammo: [40, 30, 25, 3],
 		},
-		object2: {
-			componentType: "Cube",
-			props: {
-				position: [0, 0.5, -10],
-				objectID: "object2",
-			},
-			health: 100,
-		},
-		object3: {
-			componentType: "Cube",
-			props: {
-				position: [10, 0.5, -10],
-				objectID: "object3",
-			},
-			health: 100,
-		},
-		zombie1: {
-			componentType: "Zombie",
-			props: {
-				position: [20, 0.5, -10],
-				objectID: "zombie1",
-				speed: 3,
-			},
-			health: 100,
-		}
 	},
 }
 
