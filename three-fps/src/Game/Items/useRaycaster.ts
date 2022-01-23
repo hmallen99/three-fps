@@ -2,7 +2,7 @@ import { useThree } from "@react-three/fiber"
 import { useEffect } from "react"
 import { Raycaster } from "three"
 import { useDispatch } from "react-redux"
-import { objectActions } from "../Reducers/objectSlice"
+import { destructibleActions } from "../Reducers/destructibleSlice"
 
 const raycaster = new Raycaster()
 
@@ -11,7 +11,7 @@ const raycaster = new Raycaster()
  * it will decrement the ammo in this weapon, then send out a ray from
  * the center of the screen, and try to damage the first object that it
  * intersects with.
- * 
+ *
  * @param {*} damage Amount of damage that this weapon does
  * @param {*} slot Which inventory slot this weapon is in
  * @param {*} ammo Current amount of ammo in this inventory slot
@@ -31,7 +31,7 @@ export const useGun = (damage: number, slot: number, ammo: number, parentID: str
 				let doesIntersect = false
 				let intersectID = null
 
-				dispatch(objectActions.decrementAmmo({
+				dispatch(destructibleActions.decrementAmmo({
 					objectID: parentID,
 					ammo: 1,
 					slot: slot
@@ -44,12 +44,12 @@ export const useGun = (damage: number, slot: number, ammo: number, parentID: str
 						break
 					}
 				}
-        
+
 				if (!doesIntersect) {
 					return
 				}
 
-				dispatch(objectActions.decrementHealth({
+				dispatch(destructibleActions.decrementHealth({
 					objectID: intersectID,
 					damageAmount: damage
 				}))

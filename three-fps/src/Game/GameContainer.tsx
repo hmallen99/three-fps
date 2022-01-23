@@ -2,14 +2,14 @@ import { Player } from "./Player/Player"
 import { Ground } from "./Terrain/Ground"
 import { Cube } from "./Terrain/Cube"
 import { Provider } from "react-redux"
-import store from "./Reducers/objectStore"
+import store from "./Reducers/GameStore"
 import { ReactElement } from "react"
 import { Zombie } from "./Zombies/Zombie"
 
 /**
  * All of the objects in the game, including the terrain, destructibles,
  * and Players
- * 
+ *
  * @returns All the objects in the Game, wrapped in a store provider
  * that handles updates to the objects
  */
