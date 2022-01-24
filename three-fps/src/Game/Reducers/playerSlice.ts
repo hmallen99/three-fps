@@ -1,27 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { AvailableItem } from "./availableItemsSlice"
 
-const initialState : any = {
+type InitialState = {
+	health: number,
+	slots: Array<AvailableItem>,
+}
+
+const initialState : InitialState = {
 	health: 100,
 	slots: [
 		{
 			damage: 20,
 			assetID: "./lasgun.gltf",
 			ammo: 40,
+			name: "Lasgun",
 		},
 		{
 			damage: 10,
 			assetID: "./lasgun2.gltf",
 			ammo: 30,
+			name: "Hello World",
 		},
 		{
 			damage: 40,
 			assetID: "./lasgun3.gltf",
 			ammo: 25,
+			name: "if elseif",
 		},
 		{
 			damage: 25,
 			assetID: "./lasgun4.gltf",
 			ammo: 3,
+			name: "snakebite"
 		}
 	]
 
