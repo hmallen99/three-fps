@@ -10,10 +10,10 @@ export default function LoadoutListItem(props: LoadoutListItemProps) : ReactElem
 
 	return (
 		<div>
-			<button onClick={() => props.onClick(props.item)} >
-				<h1>{props.item.name}</h1>
-				<h2>Damage: {props.item.damage}</h2>
-				<h2>Max Ammo: {props.item.ammo}</h2>
+			<button className="button2" onClick={() => props.onClick(props.item)} >
+				<h2>{props.item.name}</h2>
+				<p>Damage: {props.item.damage}</p>
+				<p>Max Ammo: {props.item.ammo}</p>
 			</button>
 		</div>
 	)
