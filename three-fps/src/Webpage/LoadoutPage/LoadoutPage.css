@@ -1,5 +1,28 @@
 #items-list {
 	overflow-y: scroll;
-	max-height: 80%;
-	max-width: 20%;
+	height: 70vh;
+	width: 20%;
+	float: left;
+}
+
+#item-display {
+	float: right;
+	width: 80%;
+	height: 70vh;
+}
+
+#loadout-wrapper {
+	height: 70%;
+}
+
+#loadout-row {
+	display: table;
+	width: 100%;
+	height: 30vh;
+	border-spacing: 10px;
+}
+
+.loadout-slot {
+	display: table-cell;
+	background-color: crimson;
 }
