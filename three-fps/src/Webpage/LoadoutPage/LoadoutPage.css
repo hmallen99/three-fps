@@ -1,0 +1,5 @@
+#items-list {
+	overflow-y: scroll;
+	max-height: 80%;
+	max-width: 20%;
+}

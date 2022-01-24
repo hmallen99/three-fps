@@ -34,7 +34,7 @@ export const playerSlice = createSlice({
 	reducers: {
 		// Add destructibles to the global store
 		updateSlot: (state, action) => {
-			state[action.payload.slot] = action.payload.item
+			state.slots[action.payload.slot] = action.payload.item
 		},
 		// Decrement ammo
 		decrementAmmo: (state, action) => {
