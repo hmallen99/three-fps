@@ -1,17 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState : any = {
-	destructibles: {
-		player1: {
-			componentType: "Player",
-			props: {
-				position: [0, 1, 0],
-				objectID: "player1",
-			},
-			health: 100,
-			ammo: [40, 30, 25, 3],
-		},
-	},
+	destructibles: {},
 }
 
 /**
@@ -35,14 +25,6 @@ export const destructibleSlice = createSlice({
 		// Increment health of a destructible
 		incrementHealth: (state, action) => {
 			state.destructibles[action.payload.objectID].health += action.payload.healAmount
-		},
-		// Decrement ammo. Not all objects handle ammo
-		decrementAmmo: (state, action) => {
-			state.destructibles[action.payload.objectID].ammo[action.payload.slot] -= action.payload.ammo
-		},
-		// Increment ammo. Not all objects handle ammo
-		incrementAmmo: (state, action) => {
-			state.destructibles[action.payload.objectID].ammo[action.payload.slot] += action.payload.ammo
 		},
 	}
 })

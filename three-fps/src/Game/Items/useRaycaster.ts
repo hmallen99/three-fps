@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import { Raycaster } from "three"
 import { useDispatch } from "react-redux"
 import { destructibleActions } from "../Reducers/destructibleSlice"
+import { playerActions } from "../Reducers/playerSlice"
 
 const raycaster = new Raycaster()
 
@@ -31,8 +32,7 @@ export const useGun = (damage: number, slot: number, ammo: number, parentID: str
 				let doesIntersect = false
 				let intersectID = null
 
-				dispatch(destructibleActions.decrementAmmo({
-					objectID: parentID,
+				dispatch(playerActions.decrementAmmo({
 					ammo: 1,
 					slot: slot
 				}))
