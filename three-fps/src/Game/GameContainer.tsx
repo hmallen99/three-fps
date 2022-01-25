@@ -7,7 +7,6 @@ import { useSelector } from "react-redux"
 import { RootState } from "./Reducers/GameStore"
 
 const destructibleComponents : any = {
-	"Player": Player,
 	"Cube": Cube,
 	"Zombie": Zombie
 }
@@ -27,12 +26,14 @@ function GameContainer() : ReactElement {
 		const data = destructibles[name]
 
 		const gameComponent = destructibleComponents[data.componentType]
-		gameChildren.push(React.createElement(gameComponent, data.props))
+		const destrucibleProps = {...data.props, "key": data.props["objectID"]}
+		gameChildren.push(React.createElement(gameComponent, destrucibleProps))
 	}
 
 	return (
 		<>
-			<Ground />
+			<Ground key="ground" />
+			<Player key="player" objectID={"player1"} position={[0, 1, 0]} />
 			{gameChildren}
 		</>
 	)

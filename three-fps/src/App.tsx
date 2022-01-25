@@ -35,7 +35,9 @@ export default function App() {
 					<AvatarPage />
 				</Route>
 				<Route path="/loadout">
-					<LoadoutPage />
+					<Provider store={store} >
+						<LoadoutPage />
+					</Provider>
 				</Route>
 				<Route path="/start">
 					<Provider store={store} >

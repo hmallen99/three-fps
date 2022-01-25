@@ -4,7 +4,7 @@ import { useSphere } from "@react-three/cannon"
 import { useFrame } from "@react-three/fiber"
 import { getPosition } from "../Reducers/playerPositionReducer"
 import { useDispatch } from "react-redux"
-import { destructibleActions } from "../Reducers/destructibleSlice"
+import { playerActions } from "../Reducers/playerSlice"
 
 const direction = new THREE.Vector3()
 const speed = new THREE.Vector3()
@@ -28,8 +28,7 @@ export const ZombieMesh = (props : any) : ReactElement => {
 		const intersectData = e.body.userData
 		if (intersectData.type === "Player"){
 			console.log(intersectData.id)
-			dispatch(destructibleActions.decrementHealth({
-				objectID: intersectData.id,
+			dispatch(playerActions.decrementHealth({
 				damageAmount: props.damage,
 			}))
 		}

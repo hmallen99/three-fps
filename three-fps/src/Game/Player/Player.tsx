@@ -12,8 +12,16 @@ import { PlayerController } from "./PlayerController"
  * @returns A PlayerController, which handles the player's mesh and movements
  */
 export function Player(props : any) : ReactElement | null {
-	const health = useSelector((state : RootState) => state.destructibles.destructibles[props.objectID].health)
-	const ammo = useSelector((state : RootState) => state.destructibles.destructibles[props.objectID].ammo)
+	const health = useSelector((state : RootState) => state.player.health)
+	const ammo = useSelector((state : RootState) => {
+		return [
+			state.player.slots[0].ammo,
+			state.player.slots[1].ammo,
+			state.player.slots[2].ammo,
+			state.player.slots[3].ammo,
+		]
+	})
+	const configs = useSelector((state: RootState) => state.player.slots)
 	console.log(health)
 
 	if (health > 0) {
@@ -22,24 +30,7 @@ export function Player(props : any) : ReactElement | null {
 				objectID={props.objectID}
 				health={health}
 				ammo={ammo}
-				configs={[
-					{
-						damage: 20,
-						assetID: "./lasgun.gltf",
-					},
-					{
-						damage: 10,
-						assetID: "./lasgun2.gltf",
-					},
-					{
-						damage: 40,
-						assetID: "./lasgun3.gltf",
-					},
-					{
-						damage: 25,
-						assetID: "./lasgun4.gltf",
-					}
-				]}
+				configs={configs}
 				parentID={props.objectID}
 				{...props}
 			/>

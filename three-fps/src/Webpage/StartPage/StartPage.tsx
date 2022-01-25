@@ -4,15 +4,6 @@ import { Link } from "react-router-dom"
 import { destructibleActions } from "../../Game/Reducers/destructibleSlice"
 
 const defaultConfig = {
-	player1: {
-		componentType: "Player",
-		props: {
-			position: [0, 1, 0],
-			objectID: "player1",
-		},
-		health: 100,
-		ammo: [40, 30, 25, 3],
-	},
 	object2: {
 		componentType: "Cube",
 		props: {
