@@ -1,5 +1,5 @@
 import LoadoutSlot from "../LoadoutSlot"
-import React from "react-dom"
+import React from "react"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 
