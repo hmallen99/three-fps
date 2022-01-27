@@ -68,7 +68,7 @@ it("Should handle single jump", () => {
 	render(<MovementController velocity={[0, 0, 0]}/>)
 	expect(screen.getByTestId("jump").textContent).toEqual("false0false")
 
-	let keyboardState = userEvent.keyboard("[Space>]")
+	const keyboardState = userEvent.keyboard("[Space>]")
 	expect(screen.getByTestId("jump").textContent).toEqual("true1true")
 	userEvent.keyboard("[/Space]", {keyboardState})
 	expect(screen.getByTestId("jump").textContent).toEqual("false1false")
