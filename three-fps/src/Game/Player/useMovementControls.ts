@@ -7,20 +7,20 @@ const moveFieldByKey = (key : string) => keys[key]
  * A React Hook that handles keyboard inputs for moving the character.
  * WASD are movements, Space is jump. Players can press space twice in
  * a row to double jump.
- * 
- * WASD adapted in part from Maksim Ivanov 
+ *
+ * WASD adapted in part from Maksim Ivanov
  * "React Minecraft": https://www.youtube.com/watch?v=Lc2JvBXMesY&t=124s
- * 
+ *
  * @param {*} velocity Player's current velocity, used to improve responsiveness
  * of jumping when just returning to the ground
  * @returns a dictionary of movements, set to true if currently in action
  */
 const useMovementControls = (velocity: React.MutableRefObject<number[]>) => {
 	const [movement, setMovement] = useState({
-		forward: false, 
-		backward: false, 
+		forward: false,
+		backward: false,
 		left: false,
-		right: false, 
+		right: false,
 		jump: {
 			jump: false,
 			jumpCount: 0,
@@ -64,7 +64,6 @@ const useMovementControls = (velocity: React.MutableRefObject<number[]>) => {
 		})
 
 		const handleKeyDown = (e : KeyboardEvent) => setMovement((m) => {
-      
 			if (moveFieldByKey(e.code) !== "jump") {
 				return { ...m, [moveFieldByKey(e.code)]: true }
 			}
