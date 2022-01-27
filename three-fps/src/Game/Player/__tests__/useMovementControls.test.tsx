@@ -30,7 +30,7 @@ it("Should handle wasd movement", () => {
 	expect(screen.getByTestId("left").textContent).toEqual("false")
 	expect(screen.getByTestId("right").textContent).toEqual("false")
 
-	var keyboardState = userEvent.keyboard("[KeyW>]")
+	let keyboardState = userEvent.keyboard("[KeyW>]")
 	expect(screen.getByTestId("forward").textContent).toEqual("true")
 	expect(screen.getByTestId("backward").textContent).toEqual("false")
 	expect(screen.getByTestId("left").textContent).toEqual("false")
@@ -68,7 +68,7 @@ it("Should handle single jump", () => {
 	render(<MovementController velocity={[0, 0, 0]}/>)
 	expect(screen.getByTestId("jump").textContent).toEqual("false0false")
 
-	var keyboardState = userEvent.keyboard("[Space>]")
+	let keyboardState = userEvent.keyboard("[Space>]")
 	expect(screen.getByTestId("jump").textContent).toEqual("true1true")
 	userEvent.keyboard("[/Space]", {keyboardState})
 	expect(screen.getByTestId("jump").textContent).toEqual("false1false")
@@ -77,7 +77,7 @@ it("Should handle single jump", () => {
 it("Should handle double jump", () => {
 	const velocity = [0, 1, 0]
 	render(<MovementController velocity={velocity}/>)
-	var keyboardState = userEvent.keyboard("[Space>]")
+	let keyboardState = userEvent.keyboard("[Space>]")
 	expect(screen.getByTestId("jump").textContent).toEqual("true1true")
 	userEvent.keyboard("[/Space]", {keyboardState})
 
